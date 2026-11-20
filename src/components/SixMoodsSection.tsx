@@ -39,9 +39,19 @@ export default function SixMoodsSection() {
           ].map((word, i) => (
             <span key={i} className="whitespace-nowrap flex items-center gap-10">
               <span>{word}</span>
-              <span className="text-[#E8C574] text-[10px]" aria-hidden="true">
-                ♦
-              </span>
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className="text-[#E8C574] shrink-0"
+              >
+                <path
+                  d="M6 0.5L7.6 4.4L11.5 6L7.6 7.6L6 11.5L4.4 7.6L0.5 6L4.4 4.4L6 0.5Z"
+                  fill="currentColor"
+                />
+              </svg>
             </span>
           ))}
         </div>

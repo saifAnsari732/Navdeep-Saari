@@ -30,9 +30,19 @@ export default function GoldTicker({
               key={`${item.label}-${idx}`}
               className="flex items-center gap-3 whitespace-nowrap text-[12px] sm:text-[13px]"
             >
-              <span className="text-[#E8C574] text-[10px]" aria-hidden="true">
-                ◆
-              </span>
+              <svg
+                width="9"
+                height="9"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className="text-[#E8C574] shrink-0"
+              >
+                <path
+                  d="M6 1L11 6L6 11L1 6L6 1Z"
+                  fill="currentColor"
+                />
+              </svg>
               <span className="font-bold tracking-[0.14em] text-[#E8C574] uppercase">
                 {item.label}
               </span>

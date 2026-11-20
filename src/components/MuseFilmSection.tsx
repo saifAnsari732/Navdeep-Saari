@@ -113,7 +113,7 @@ export default function MuseFilmSection() {
               >
                 <Image
                   src={src}
-                  alt="NOOLAM silk lifestyle editorial"
+                  alt="NAVDEEP silk lifestyle editorial"
                   fill
                   sizes="220px"
                   className="object-cover"
@@ -177,7 +177,7 @@ export default function MuseFilmSection() {
             <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#1C0F0C] shadow-[0_24px_60px_rgba(20,17,16,0.2)]">
               <Image
                 src="/images/muse-film-poster.jpg"
-                alt="NOOLAM Brand Film — Feel the drape in Kanchipuram temple courtyard"
+                alt="NAVDEEP Brand Film — Feel the drape in Kanchipuram temple courtyard"
                 fill
                 sizes="(max-width: 1024px) 94vw, 780px"
                 className={`object-cover ${columnsPaused ? "" : "animate-ken-burns"}`}
@@ -262,7 +262,7 @@ export default function MuseFilmSection() {
               >
                 <Image
                   src={src}
-                  alt="NOOLAM silk lifestyle moment"
+                  alt="NAVDEEP silk lifestyle moment"
                   fill
                   sizes="220px"
                   className="object-cover"

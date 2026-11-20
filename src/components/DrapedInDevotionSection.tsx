@@ -90,6 +90,24 @@ const DEVOTION_CARDS: DevotionCard[] = [
     price: 34500,
     image: "/images/model-emerald.jpg",
   },
+  {
+    id: "dev-09",
+    num: "09",
+    category: "ROYAL KORVAI",
+    name: "Neelam Sapphire Korvai",
+    note: "Three-shuttle cobalt weave · temple zari border",
+    price: 33900,
+    image: "/images/devotion-cobalt.jpg",
+  },
+  {
+    id: "dev-10",
+    num: "10",
+    category: "MUHURTHAM PATTU",
+    name: "Sindoor Bridal Kanjivaram",
+    note: "Sacred bridal crimson · 240g pure silver zari",
+    price: 36500,
+    image: "/images/devotion-crimson.jpg",
+  },
 ];
 
 export default function DrapedInDevotionSection() {
@@ -104,7 +122,7 @@ export default function DrapedInDevotionSection() {
   const handleAdd = (card: DevotionCard) => {
     addToBag({
       id: card.id,
-      brand: "NOOLAM",
+      brand: "NAVDEEP",
       category: card.category,
       name: card.name,
       price: card.price,
@@ -198,7 +216,7 @@ export default function DrapedInDevotionSection() {
                   onClick={() =>
                     toggleWishlist({
                       id: card.id,
-                      brand: "NOOLAM",
+                      brand: "NAVDEEP",
                       category: card.category,
                       name: card.name,
                       price: card.price,
@@ -278,9 +296,19 @@ export default function DrapedInDevotionSection() {
           ].map((phrase, i) => (
             <span key={i} className="whitespace-nowrap flex items-center gap-10">
               <span>{phrase}</span>
-              <span className="text-[#C6943B] not-italic text-[10px]" aria-hidden="true">
-                ✦
-              </span>
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className="text-[#C6943B] shrink-0"
+              >
+                <path
+                  d="M6 0L7.35 4.65L12 6L7.35 7.35L6 12L4.65 7.35L0 6L4.65 4.65L6 0Z"
+                  fill="currentColor"
+                />
+              </svg>
             </span>
           ))}
         </div>

@@ -107,7 +107,7 @@ export default function TheRackSection() {
     if (!activeItem || !selectedSize) return;
     addToBag({
       id: activeItem.id,
-      brand: "NOOLAM",
+      brand: "NAVDEEP",
       category: activeItem.type === "blouse" ? "COUTURE BLOUSE" : "SILK SAREE",
       name: activeItem.name,
       price: activeItem.price,
@@ -507,7 +507,7 @@ export default function TheRackSection() {
                       onClick={() =>
                         toggleWishlist({
                           id: activeItem.id,
-                          brand: "NOOLAM",
+                          brand: "NAVDEEP",
                           category: "RACK PIECE",
                           name: activeItem.name,
                           price: activeItem.price,
@@ -563,11 +563,11 @@ export default function TheRackSection() {
         </div>
 
         {/* Bottom Subtle Captions */}
-        <div className="mt-10 pt-5 border-t border-[#F3EEE6] flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] tracking-[0.22em] text-[#A8A29E] uppercase">
+        <div className="mt-10 pt-5 border-t border-[#F3EEE6] flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] tracking-[0.22em] text-[#78716C] uppercase">
           <span>
             Explore the collection · {filteredItems.length} pieces
           </span>
-          <span>AI-generated studio imagery · Demo collection</span>
+          <span>100% Pure 3-Ply Mulberry Silk · Silk Mark Certified Archive</span>
         </div>
       </div>
     </section>

@@ -143,7 +143,7 @@ export default function BridalCollectionSection() {
                 onClick={() =>
                   addToBag({
                     id: activeSaree.id,
-                    brand: "NOOLAM",
+                    brand: "NAVDEEP",
                     category: "BRIDAL COLLECTION",
                     name: activeSaree.name,
                     price: activeSaree.price,
@@ -160,7 +160,7 @@ export default function BridalCollectionSection() {
                 onClick={() =>
                   toggleWishlist({
                     id: activeSaree.id,
-                    brand: "NOOLAM",
+                    brand: "NAVDEEP",
                     category: "BRIDAL COLLECTION",
                     name: activeSaree.name,
                     price: activeSaree.price,

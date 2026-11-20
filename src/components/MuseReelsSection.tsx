@@ -374,7 +374,7 @@ export default function MuseReelsSection() {
                           onClick={() => {
                             addToBag({
                               id: lightboxReel.id,
-                              brand: "NOOLAM",
+                              brand: "NAVDEEP",
                               category: lightboxReel.fabric,
                               name: lightboxReel.title,
                               price: lightboxReel.featuredPrice,

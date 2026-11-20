@@ -150,7 +150,7 @@ export default function ThreeSilksWeaveSection() {
     addBundleToBag(
       chosenList.map((s) => ({
         id: s.id,
-        brand: "NOOLAM",
+        brand: "NAVDEEP",
         category: "SEER VARISAI SILK",
         name: s.name,
         price: s.price,
