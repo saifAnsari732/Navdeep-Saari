@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-display: var(--font-anton), Impact, sans-serif;
+}
+
+:root {
+  --color-primary: #7A1426;
+  --color-primary-deep: #4A0A15;
+  --color-on-primary: #FFFFFF;
+  --color-gold: #C6943B;
+  --color-gold-light: #E8C574;
+  --color-gold-dark: #8F6520;
+  --color-background: #FFFFFF;
+  --color-surface: #FAF8F5;
+  --color-foreground: #141110;
+  --color-muted: #6B635E;
+  --color-border: #EAE4DC;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #141110;
+}
+
+body {
+  background-color: #ffffff;
+  color: #141110;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Maroon-to-Gold Editorial Text Gradient */
+.text-maroon-gold {
+  background: linear-gradient(95deg, #6B0F1A 0%, #8C1D2C 38%, #C68B3C 78%, #DFB15B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gold-maroon {
+  background: linear-gradient(95deg, #C6943B 0%, #9E4332 45%, #721121 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Brushed Chrome Clothes Rail */
+.chrome-rail {
+  background: linear-gradient(
+    180deg,
+    #f3f4f6 0%,
+    #ffffff 22%,
+    #9ca3af 52%,
+    #e5e7eb 80%,
+    #6b7280 100%
+  );
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* Seamless Marquee Ticker */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee {
+    animation: marqueeScroll 34s linear infinite;
+  }
+  .animate-marquee:hover,
+  .animate-marquee.paused {
+    animation-play-state: paused;
+  }
+}
+
+/* Vertical Opposite-Scrolling Film Columns */
+@keyframes scrollUpColumn {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes scrollDownColumn {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-col-up {
+  will-change: transform;
+}
+.animate-col-down {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-col-up {
+    animation: scrollUpColumn 28s linear infinite;
+  }
+  .animate-col-down {
+    animation: scrollDownColumn 30s linear infinite;
+  }
+  .animate-col-up:hover,
+  .animate-col-down:hover,
+  .animate-col-up.paused,
+  .animate-col-down.paused {
+    animation-play-state: paused;
+  }
+}
+
+/* Subtle Ken Burns Motion for Cinemagraph Film & Reels */
+@keyframes kenBurnsSlow {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(-1.2%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-ken-burns {
+    animation: kenBurnsSlow 16s ease-in-out infinite;
+  }
+}
+
+/* Hide scrollbars cleanly where custom controls exist */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus visibility for keyboard accessibility */
+*:focus-visible {
+  outline: 2px solid #C6943B;
+  outline-offset: 2px;
+}
