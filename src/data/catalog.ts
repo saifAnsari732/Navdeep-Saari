@@ -306,8 +306,7 @@ export const STYLED_LOOKS: StyledLook[] = [
   {
     id: "look-terracotta",
     shortName: "Kanchi Rani",
-    modelImage: "/images/model-purple-cutout.png",
-    modelFilter: "contrast(1.06) saturate(1.12)",
+    modelImage: "/images/model-rani-cutout.png",
     pieces: [
       {
         id: "look3-saree",
@@ -361,9 +360,8 @@ export const STYLED_LOOKS: StyledLook[] = [
   },
   {
     id: "look-check",
-    shortName: "Royal Emerald",
-    modelImage: "/images/model-emerald-cutout.png",
-    modelFilter: "contrast(1.05) saturate(1.12)",
+    shortName: "Royal Cobalt",
+    modelImage: "/images/model-cobalt-cutout.png",
     pieces: [
       {
         id: "look5-saree",
@@ -418,8 +416,7 @@ export const STYLED_LOOKS: StyledLook[] = [
   {
     id: "look-rani",
     shortName: "Benares Gold",
-    modelImage: "/images/model-ivory-cutout.png",
-    modelFilter: "sepia(0.28) saturate(1.45)",
+    modelImage: "/images/model-gold-cutout.png",
     pieces: [
       {
         id: "look6-saree",
@@ -493,9 +490,8 @@ export const PICK_SILK_CARDS: PickSilkCard[] = [
     price: 19900,
     bgColor: "#991B29",
     textColor: "#FFFFFF",
-    image: "/images/model-emerald-cutout.png",
-    imageFilter: "contrast(1.06) saturate(1.14)",
-    weave: "Handloom temple weave with gold zari",
+    image: "/images/model-cobalt-cutout.png",
+    weave: "Handloom cobalt check with gold zari",
   },
   {
     id: "pick-bengal",
@@ -516,8 +512,7 @@ export const PICK_SILK_CARDS: PickSilkCard[] = [
     price: 32400,
     bgColor: "#BE123C",
     textColor: "#FFFFFF",
-    image: "/images/model-purple-cutout.png",
-    imageFilter: "contrast(1.05) saturate(1.15) brightness(1.03)",
+    image: "/images/model-rani-cutout.png",
     weave: "Rani pink body with antique temple korvai",
   },
   {
@@ -528,20 +523,52 @@ export const PICK_SILK_CARDS: PickSilkCard[] = [
     price: 41800,
     bgColor: "#EAB308",
     textColor: "#1C140C",
-    image: "/images/model-ivory-cutout.png",
-    imageFilter: "sepia(0.32) saturate(1.5)",
+    image: "/images/model-gold-cutout.png",
     weave: "Rich zari tissue & sacred gold weave",
   },
   {
-    id: "pick-terracotta",
+    id: "pick-koorai",
     titleLine1: "KOORAI",
-    titleLine2: "EMERALD",
+    titleLine2: "CHECK",
     fullName: "Koorai Emerald Pure Silk",
-    price: 27400,
+    price: 18600,
     bgColor: "#15803D",
     textColor: "#FFFFFF",
     image: "/images/model-emerald-cutout.png",
     weave: "Temple emerald silk with pure zari pallu",
+  },
+  {
+    id: "pick-murshidabad",
+    titleLine1: "MURSHIDABAD",
+    titleLine2: "MAROON",
+    fullName: "Murshidabad Maroon Zari Silk",
+    price: 22300,
+    bgColor: "#C2410C",
+    textColor: "#FFFFFF",
+    image: "/images/model-maroon-cutout.png",
+    weave: "Deep maroon silk with antique gold border",
+  },
+  {
+    id: "pick-monsoon",
+    titleLine1: "MONSOON",
+    titleLine2: "TEAL",
+    fullName: "Monsoon Teal Peacock Kanjivaram",
+    price: 23900,
+    bgColor: "#1D4ED8",
+    textColor: "#FFFFFF",
+    image: "/images/model-teal-cutout.png",
+    weave: "Peacock teal mulberry with zari pallu",
+  },
+  {
+    id: "pick-sindoor",
+    titleLine1: "SINDOOR",
+    titleLine2: "RED",
+    fullName: "Sindoor Red Muhurtham Pattu",
+    price: 36500,
+    bgColor: "#D97706",
+    textColor: "#1C140C",
+    image: "/images/model-crimson-cutout.png",
+    weave: "Sacred bridal crimson with 24k gold zari",
   },
 ];
 

@@ -18,9 +18,36 @@ export default function SixMoodsSection() {
   return (
     <section
       id="six-moods"
-      className="relative bg-white py-20 sm:py-28 px-6 sm:px-10 lg:px-14 overflow-hidden"
+      className="relative z-20 bg-white pb-20 sm:pb-28 overflow-hidden"
     >
-      <div className="max-w-[1360px] mx-auto">
+      {/* Wavy Crimson-Maroon & Gold Silk Heritage Ribbon along Top Edge (matches w_17.jpg & w_18.jpg) */}
+      <div className="relative w-full bg-gradient-to-r from-[#690D1D] via-[#88142A] to-[#690D1D] border-y-2 border-[#E8C574]/60 shadow-[0_-10px_28px_rgba(0,0,0,0.28)] overflow-hidden select-none mb-16 sm:mb-20">
+        <div className="animate-marquee py-3 flex items-center gap-10 text-[11px] sm:text-[12px] font-bold tracking-[0.3em] text-[#F9E7BE] uppercase">
+          {[
+            "NAVDEEP",
+            "PURE ZARI",
+            "HANDWOVEN",
+            "TEMPLE BORDERS",
+            "BRIDAL SILK",
+            "KANCHIPURAM",
+            "NAVDEEP",
+            "PURE ZARI",
+            "HANDWOVEN",
+            "TEMPLE BORDERS",
+            "BRIDAL SILK",
+            "KANCHIPURAM",
+          ].map((word, i) => (
+            <span key={i} className="whitespace-nowrap flex items-center gap-10">
+              <span>{word}</span>
+              <span className="text-[#E8C574] text-[10px]" aria-hidden="true">
+                ♦
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-14">
         {/* Top Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14 sm:mb-16">
           <motion.div

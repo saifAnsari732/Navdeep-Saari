@@ -15,32 +15,40 @@ export default function HeroSection() {
     offset: ["start start", "end end"],
   });
 
-  // Buttery damped scroll progress for cinematic camera walkthrough
+  // Buttery spring-damped progress for the 4-chapter showroom walkthrough
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 110,
+    stiffness: 100,
     damping: 26,
-    mass: 0.4,
+    mass: 0.45,
   });
 
-  // Camera pushes deep down the showroom aisle toward the chandelier & inner sanctum
-  const showroomScale = useTransform(smoothProgress, [0, 0.85, 1], [1.0, 1.68, 1.78]);
-  const showroomY = useTransform(smoothProgress, [0, 0.85, 1], ["0%", "-6%", "-8%"]);
-  const showroomX = useTransform(smoothProgress, [0, 0.85, 1], ["0%", "4%", "5%"]);
+  // Stage 1 (Entrance) -> Stage 2 (Mid Showroom Aisle) -> Stage 3 (Seated Customers in Sanctum Lounge)
+  const stage1Scale = useTransform(smoothProgress, [0, 0.48], [1.0, 1.48]);
+  const stage1Y = useTransform(smoothProgress, [0, 0.48], ["0%", "-5%"]);
 
-  // Foreground headline & buttons glide up and dissolve as you enter the showroom
-  const contentOpacity = useTransform(smoothProgress, [0, 0.28], [1, 0]);
-  const contentY = useTransform(smoothProgress, [0, 0.28], [0, -70]);
-  const contentScale = useTransform(smoothProgress, [0, 0.28], [1, 0.96]);
+  const stage2Opacity = useTransform(smoothProgress, [0.22, 0.40, 0.72, 0.85], [0, 1, 1, 0]);
+  const stage2Scale = useTransform(smoothProgress, [0.22, 0.78], [1.02, 1.32]);
 
-  // Warm ambient scrim eases off so the glowing inner chandelier shines during walkthrough
-  const scrimOpacity = useTransform(smoothProgress, [0, 0.45, 0.85], [1, 0.4, 0.25]);
+  const stage3Opacity = useTransform(smoothProgress, [0.64, 0.79, 1], [0, 1, 1]);
+  const stage3Scale = useTransform(smoothProgress, [0.64, 1], [1.02, 1.16]);
 
-  // Mid-walkthrough subtle golden sanctum caption appears briefly as you glide inside
-  const sanctumOpacity = useTransform(smoothProgress, [0.34, 0.52, 0.72, 0.86], [0, 1, 1, 0]);
-  const sanctumY = useTransform(smoothProgress, [0.34, 0.52, 0.86], [28, 0, -24]);
+  // Stage 0: Entrance Hero Headline ("Woven for the Divine.")
+  const heroOpacity = useTransform(smoothProgress, [0, 0.20], [1, 0]);
+  const heroY = useTransform(smoothProgress, [0, 0.22], [0, -64]);
 
-  // Subtle scroll cue fades out immediately on scroll
-  const cueOpacity = useTransform(smoothProgress, [0, 0.12], [1, 0]);
+  // Chapter 01 · THE LOOM (Bottom Right, 24% - 48% scroll — matches w_14.jpg)
+  const ch1Opacity = useTransform(smoothProgress, [0.23, 0.31, 0.44, 0.51], [0, 1, 1, 0]);
+  const ch1Y = useTransform(smoothProgress, [0.23, 0.31, 0.44, 0.51], [32, 0, 0, -28]);
+
+  // Chapter 02 · THE ZARI (Top Left, 50% - 73% scroll — matches w_15.jpg)
+  const ch2Opacity = useTransform(smoothProgress, [0.50, 0.57, 0.69, 0.76], [0, 1, 1, 0]);
+  const ch2Y = useTransform(smoothProgress, [0.50, 0.57, 0.69, 0.76], [32, 0, 0, -28]);
+
+  // Chapter 03 · THE HERITAGE — Customers Seated in Sanctum Lounge (Top Left, 75% - 98% scroll — matches w_16.jpg)
+  const ch3Opacity = useTransform(smoothProgress, [0.75, 0.82, 0.96, 1.0], [0, 1, 1, 0.9]);
+  const ch3Y = useTransform(smoothProgress, [0.75, 0.82, 1.0], [32, 0, -10]);
+
+  const cueOpacity = useTransform(smoothProgress, [0, 0.1], [1, 0]);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -55,7 +63,7 @@ export default function HeroSection() {
         duration: 0.95,
         stagger: 0.12,
         ease: "power3.out",
-        delay: 1.35, // syncs cleanly right as crimson silk curtain lifts
+        delay: 1.35,
       });
     }, textGroupRef);
 
@@ -70,23 +78,22 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative w-full h-[220vh] bg-[#1A0D0A]"
+      className="relative w-full h-[350vh] bg-[#1A0D0A]"
     >
-      {/* Sticky Full-Viewport Showroom Camera Stage */}
+      {/* Sticky Full-Viewport Showroom Walkthrough Stage */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-end">
-        {/* Scroll-Driven Showroom Camera Walkthrough Image */}
+        {/* Layer 1: Showroom Entrance (0% - 48%) */}
         <motion.div
           style={{
-            scale: showroomScale,
-            y: showroomY,
-            x: showroomX,
+            scale: stage1Scale,
+            y: stage1Y,
             transformOrigin: "44% 46%",
           }}
           className="absolute inset-0 z-0 will-change-transform"
         >
           <Image
             src="/images/hero-showroom.jpg"
-            alt="NOOLAM Kanchipuram Silk Heritage Showroom with teakwood shelves and draped crimson gold Kanjivaram mannequin"
+            alt="NAVDEEP Kanchipuram Silk Heritage Showroom entrance"
             fill
             priority
             fetchPriority="high"
@@ -96,45 +103,111 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        {/* Dynamic Editorial Scrim */}
+        {/* Layer 2: Mid-Showroom Corridor & Silk Shelves (22% - 85%) */}
         <motion.div
-          style={{ opacity: scrimOpacity }}
-          aria-hidden="true"
-          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            opacity: stage2Opacity,
+            scale: stage2Scale,
+            transformOrigin: "46% 45%",
+          }}
+          className="absolute inset-0 z-[1] will-change-transform pointer-events-none"
         >
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(20,9,6,0.78) 0%, rgba(20,9,6,0.42) 48%, rgba(20,9,6,0.16) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(18,8,6,0.42) 0%, rgba(18,8,6,0.04) 38%, rgba(22,8,10,0.72) 100%)",
-            }}
+          <Image
+            src="/images/showroom-stage-2.jpg"
+            alt="Inside the NAVDEEP Kanchipuram showroom corridor"
+            fill
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </motion.div>
 
-        {/* Mid-Scroll Sanctum Walkthrough Caption */}
+        {/* Layer 3: Inner Sanctum Bridal Lounge with Customers Seated & Shopping (64% - 100%) */}
         <motion.div
-          style={{ opacity: sanctumOpacity, y: sanctumY }}
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6"
+          style={{
+            opacity: stage3Opacity,
+            scale: stage3Scale,
+            transformOrigin: "50% 48%",
+          }}
+          className="absolute inset-0 z-[2] will-change-transform pointer-events-none"
         >
-          <p className="text-[11px] sm:text-[12px] font-semibold tracking-[0.38em] text-[#F5D688] uppercase drop-shadow">
-            Step Inside The Sanctum
+          <Image
+            src="/images/showroom-stage-3.jpg"
+            alt="Customers seated in the NAVDEEP inner sanctum bridal lounge admiring Kanjivaram silk sarees"
+            fill
+            quality={92}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </motion.div>
+
+        {/* Warm Ambient Editorial Scrim for Crisp Typography */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-[3] pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(16,7,5,0.46) 0%, rgba(16,7,5,0.14) 45%, rgba(20,7,9,0.68) 100%)",
+          }}
+        />
+
+        {/* CHAPTER 01 · THE LOOM (Bottom Right — matches w_14.jpg) */}
+        <motion.div
+          style={{ opacity: ch1Opacity, y: ch1Y }}
+          className="pointer-events-none absolute bottom-20 right-6 sm:right-14 lg:right-20 z-20 max-w-md text-right"
+        >
+          <p className="text-[11px] font-bold tracking-[0.28em] text-[#F5D688] uppercase drop-shadow">
+            01 · THE LOOM
           </p>
-          <p className="mt-2 font-serif italic text-[32px] sm:text-[48px] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.65)]">
-            Every shelf, a Kanchipuram heirloom.
+          <h2 className="mt-2 text-[32px] sm:text-[44px] font-extrabold tracking-[-0.025em] leading-[1.08] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.65)]">
+            Woven by hand,
+            <br />
+            thread by thread.
+          </h2>
+          <p className="mt-2.5 text-[14px] sm:text-[15px] text-[#F7ECE0]/90 drop-shadow">
+            Each saree spends weeks on a Kanchipuram pit loom.
           </p>
         </motion.div>
 
-        {/* Main Hero Editorial Copy */}
+        {/* CHAPTER 02 · THE ZARI (Top Left — matches w_15.jpg) */}
         <motion.div
-          style={{ opacity: contentOpacity, y: contentY, scale: contentScale }}
+          style={{ opacity: ch2Opacity, y: ch2Y }}
+          className="pointer-events-none absolute top-28 sm:top-32 left-6 sm:left-14 lg:left-20 z-20 max-w-md text-left"
+        >
+          <p className="text-[11px] font-bold tracking-[0.28em] text-[#F5D688] uppercase drop-shadow">
+            02 · THE ZARI
+          </p>
+          <h2 className="mt-2 text-[32px] sm:text-[44px] font-extrabold tracking-[-0.025em] leading-[1.08] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.65)]">
+            Gold that catches
+            <br />
+            temple light.
+          </h2>
+          <p className="mt-2.5 text-[14px] sm:text-[15px] text-[#F7ECE0]/90 drop-shadow">
+            Silk and zari interlocked, so the border never lets go.
+          </p>
+        </motion.div>
+
+        {/* CHAPTER 03 · THE HERITAGE — Customers Seated in Sanctum (Top Left — matches w_16.jpg) */}
+        <motion.div
+          style={{ opacity: ch3Opacity, y: ch3Y }}
+          className="pointer-events-none absolute top-28 sm:top-32 left-6 sm:left-14 lg:left-20 z-20 max-w-md text-left"
+        >
+          <p className="text-[11px] font-bold tracking-[0.28em] text-[#F5D688] uppercase drop-shadow">
+            03 · THE HERITAGE
+          </p>
+          <h2 className="mt-2 text-[32px] sm:text-[44px] font-extrabold tracking-[-0.025em] leading-[1.08] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.65)]">
+            An heirloom from the
+            <br />
+            first fold.
+          </h2>
+          <p className="mt-2.5 text-[14px] sm:text-[15px] text-[#F7ECE0]/90 drop-shadow">
+            Worn once, kept for generations.
+          </p>
+        </motion.div>
+
+        {/* Stage 0 Main Hero Editorial Copy */}
+        <motion.div
+          style={{ opacity: heroOpacity, y: heroY }}
           ref={textGroupRef}
           className="relative z-10 w-full max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-14 pb-20 sm:pb-24 pt-36"
         >
@@ -187,13 +260,13 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Scroll to Enter Cue */}
+        {/* Scroll to Enter Showroom Cue */}
         <motion.div
           style={{ opacity: cueOpacity }}
-          className="hidden md:flex absolute bottom-16 right-12 z-10 flex-col items-center gap-1.5 text-[#F7E8C8]/80 pointer-events-none"
+          className="hidden md:flex absolute bottom-16 right-12 z-10 flex-col items-center gap-1.5 text-[#F7E8C8]/85 pointer-events-none"
         >
           <span className="text-[10px] tracking-[0.28em] uppercase font-medium">
-            Scroll to enter
+            Scroll inside the store
           </span>
           <motion.span
             animate={{ y: [0, 5, 0] }}
@@ -202,33 +275,6 @@ export default function HeroSection() {
             <ChevronDown className="w-4 h-4 text-[#E8C574]" />
           </motion.span>
         </motion.div>
-      </div>
-
-      {/* Regal Crimson-Maroon Heritage Ribbon at Base of Walkthrough */}
-      <div className="relative z-20 -mt-11 w-full bg-gradient-to-r from-[#690D1D] via-[#831328] to-[#690D1D] border-y border-[#E8C574]/40 overflow-hidden select-none">
-        <div className="animate-marquee py-2.5 flex items-center gap-10 text-[11px] sm:text-[12px] font-semibold tracking-[0.3em] text-[#F9E7BE] uppercase">
-          {[
-            "NAVDEEP",
-            "PURE ZARI",
-            "HANDWOVEN",
-            "TEMPLE BORDERS",
-            "BRIDAL SILK",
-            "KANCHIPURAM",
-            "NAVDEEP",
-            "PURE ZARI",
-            "HANDWOVEN",
-            "TEMPLE BORDERS",
-            "BRIDAL SILK",
-            "KANCHIPURAM",
-          ].map((word, i) => (
-            <span key={i} className="whitespace-nowrap flex items-center gap-10">
-              <span>{word}</span>
-              <span className="text-[#E8C574] text-[9px]" aria-hidden="true">
-                ♦
-              </span>
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );
