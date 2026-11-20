@@ -333,12 +333,12 @@ export default function TheWeaveFooter() {
 
                     <div className="flex items-center gap-2.5 shrink-0">
                       {/* Clean Ivory Studio Drape Inset Preview Card */}
-                      <div className="relative w-14 h-20 sm:w-16 sm:h-22 rounded-2xl bg-[#FAF7F2]/95 border border-[#E8C574]/60 shadow-[0_10px_25px_rgba(0,0,0,0.45)] p-1.5 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                      <div className="relative w-16 h-24 sm:w-[74px] sm:h-[104px] rounded-2xl bg-[#FAF7F2]/95 border border-[#E8C574]/65 shadow-[0_10px_25px_rgba(0,0,0,0.45)] p-1.5 overflow-hidden transition-transform duration-500 group-hover:scale-105">
                         <Image
                           src={item.cutout}
                           alt={`${item.name} studio drape`}
                           fill
-                          sizes="72px"
+                          sizes="80px"
                           className="object-contain p-1"
                         />
                       </div>
