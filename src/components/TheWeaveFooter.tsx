@@ -312,78 +312,84 @@ export default function TheWeaveFooter() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.55, delay: idx * 0.06 }}
-                  className={`${item.span} group relative h-[320px] sm:h-[350px] rounded-[24px] overflow-hidden bg-[#1A0A0D] border border-[#E5DDD0] shadow-md flex flex-col justify-between p-6`}
+                  className={`${item.span} group relative h-[350px] sm:h-[370px] rounded-[24px] overflow-hidden bg-[#1A0A0D] border border-[#E5DDD0] shadow-[0_14px_40px_rgba(20,17,16,0.08)] hover:border-[#C6943B] transition-all duration-500 flex flex-col justify-between p-6`}
                 >
-                  {/* Background Editorial Photo */}
+                  {/* Full-Bleed High-Fashion Editorial Photography */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    sizes="(max-width: 768px) 94vw, 480px"
-                    className="object-cover object-top opacity-75 transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 768px) 94vw, 520px"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#140609]/92 via-[#140609]/65 to-[#140609]/25" />
+                  {/* Scrim overlay guaranteeing crisp text contrast at bottom and top */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#120508] via-[#120508]/55 to-[#120508]/20" />
 
-                  {/* Floating Studio Garment Cutout Preview on the Right */}
-                  <div className="absolute right-3 bottom-2 top-4 w-[135px] sm:w-[155px] pointer-events-none z-10 flex items-center justify-center">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={item.cutout}
-                        alt={`${item.name} studio cutout`}
-                        fill
-                        sizes="160px"
-                        className="object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.65)] transition-transform duration-500 group-hover:scale-108 group-hover:-translate-y-1"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Top Tag & Wishlist Button */}
-                  <div className="relative z-20 flex items-center justify-between gap-2">
-                    <span className="px-3 py-1 rounded-full bg-white/12 border border-[#E8C574]/40 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] text-[#F5D688] uppercase">
+                  {/* Top Row: Category Pill + Actions & Studio Garment Inset Badge */}
+                  <div className="relative z-20 flex items-start justify-between gap-3">
+                    <span className="px-3 py-1 rounded-full bg-[#140609]/75 border border-[#E8C574]/45 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] text-[#F5D688] uppercase">
                       {item.tag}
                     </span>
 
-                    <button
-                      type="button"
-                      onClick={() =>
-                        toggleWishlist({
-                          id: item.id,
-                          brand: "NAVDEEP",
-                          category: item.tag,
-                          name: item.name,
-                          price: item.price,
-                          image: item.image,
-                        })
-                      }
-                      aria-label={`Wishlist ${item.name}`}
-                      className="w-9 h-9 rounded-full bg-black/40 hover:bg-white text-white hover:text-[#7A1426] border border-white/20 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
-                    >
-                      <Heart
-                        className={`w-4 h-4 ${
-                          liked ? "fill-[#E11D48] text-[#E11D48]" : ""
-                        }`}
-                      />
-                    </button>
+                    <div className="flex items-center gap-2.5 shrink-0">
+                      {/* Clean Ivory Studio Drape Inset Preview Card */}
+                      <div className="relative w-14 h-20 sm:w-16 sm:h-22 rounded-2xl bg-[#FAF7F2]/95 border border-[#E8C574]/60 shadow-[0_10px_25px_rgba(0,0,0,0.45)] p-1.5 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                        <Image
+                          src={item.cutout}
+                          alt={`${item.name} studio drape`}
+                          fill
+                          sizes="72px"
+                          className="object-contain p-1"
+                        />
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          toggleWishlist({
+                            id: item.id,
+                            brand: "NAVDEEP",
+                            category: item.tag,
+                            name: item.name,
+                            price: item.price,
+                            image: item.image,
+                          })
+                        }
+                        aria-label={`Wishlist ${item.name}`}
+                        className="w-9 h-9 rounded-full bg-black/50 hover:bg-white text-white hover:text-[#7A1426] border border-white/25 backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer self-start"
+                      >
+                        <Heart
+                          className={`w-4 h-4 ${
+                            liked ? "fill-[#E11D48] text-[#E11D48]" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Bottom Details & Quick Add CTA */}
-                  <div className="relative z-20 max-w-[65%]">
-                    <h4 className="text-[20px] sm:text-[22px] font-extrabold text-white leading-snug">
+                  {/* Bottom Details & Quick Add CTA — Full Width Without Collision */}
+                  <div className="relative z-20 pt-4">
+                    <h4 className="text-[20px] sm:text-[23px] font-extrabold text-white leading-snug tracking-[-0.01em] drop-shadow-sm">
                       {item.name}
                     </h4>
-                    <p className="mt-1 text-[12px] text-[#E7DDD2]/80 line-clamp-2">
+                    <p className="mt-1 text-[12px] sm:text-[13px] text-[#F2E9DF]/85 line-clamp-1">
                       {item.weave}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap items-center gap-3">
-                      <span className="text-[16px] font-extrabold text-[#F5D688]">
-                        {formatINR(item.price)}
-                      </span>
+                    <div className="mt-4 pt-3.5 border-t border-white/15 flex items-center justify-between gap-3">
+                      <div>
+                        <span className="block text-[9px] font-bold tracking-[0.2em] text-[#E8C574]/85 uppercase">
+                          Atelier Price
+                        </span>
+                        <span className="text-[17px] sm:text-[19px] font-extrabold text-[#F5D688]">
+                          {formatINR(item.price)}
+                        </span>
+                      </div>
 
                       <button
                         type="button"
                         onClick={() => handleQuickAdd(item)}
-                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase transition-all cursor-pointer ${
+                        className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase transition-all cursor-pointer ${
                           isAdded
                             ? "bg-emerald-600 text-white"
                             : "bg-white text-[#141110] hover:bg-[#E8C574]"
